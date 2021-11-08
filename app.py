@@ -15,5 +15,11 @@ def custom_greeting(greeting="Hello"):
     return f"<h1>The greeting is: {greeting_value}</h1>"
 
 
+@app.route("/user")
+@app.route("/user/<name>")
+def custom_greeting_without_query_string(name="No name"):
+    return f"<h1>Hi {name}!</h1>"
+
+
 if __name__ == '__main__':
     app.run(debug=True)
