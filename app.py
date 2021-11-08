@@ -10,9 +10,9 @@ def hello_flask():
 
 
 @app.route("/custom-greeting/")
-def custom_greeting():
-    greeting_value = request.args.get("greeting")
-    return f"<h1>The greeting is: {greeting_value} </h1>"
+def custom_greeting(greeting="Hello"):
+    greeting_value = request.args.get("greeting", greeting)
+    return f"<h1>The greeting is: {greeting_value}</h1>"
 
 
 if __name__ == '__main__':
