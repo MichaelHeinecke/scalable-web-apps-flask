@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
@@ -29,6 +29,11 @@ def display_float(num: float):
 @app.route("/add/<int:num1>/<int:num2>")
 def add_integers(num1: int, num2: int):
     return f"<h1>{num1} + {num2} = {num1 + num2}</h1>"
+
+
+@app.route("/template")
+def using_template():
+    return render_template("hello.html")
 
 
 if __name__ == '__main__':
