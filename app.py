@@ -11,6 +11,7 @@ app.config.update(
 
 db = SQLAlchemy(app)
 
+
 @app.route('/index')
 @app.route('/')
 def hello_flask():
