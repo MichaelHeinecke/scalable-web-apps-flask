@@ -36,5 +36,21 @@ def using_template():
     return render_template("hello.html")
 
 
-if __name__ == '__main__':
+@app.route("/watch")
+def top_movies():
+    movie_list = [
+        "autopsy of jane doe",
+        "neon demon",
+        "ghost in a shell",
+        "kong: skull island",
+        "john wick 2",
+        "spiderman - homecoming"
+    ]
+
+    return render_template("movies.html",
+                           movies=movie_list,
+                           name="Harry")
+
+
+if __name__ == "__main__":
     app.run(debug=True)
