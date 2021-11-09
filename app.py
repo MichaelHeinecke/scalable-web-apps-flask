@@ -36,8 +36,8 @@ def using_template():
     return render_template("hello.html")
 
 
-@app.route("/watch")
-def top_movies():
+@app.route("/watch/<string:name>")
+def top_movies(name: str):
     movie_list = [
         "autopsy of jane doe",
         "neon demon",
@@ -49,7 +49,7 @@ def top_movies():
 
     return render_template("movies.html",
                            movies=movie_list,
-                           name="Harry")
+                           name=name)
 
 
 if __name__ == "__main__":
