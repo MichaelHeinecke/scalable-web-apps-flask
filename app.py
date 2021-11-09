@@ -1,7 +1,15 @@
 from flask import Flask, request, render_template
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
+app.config.update(
+    SECRET_KEY='topsecret',
+    SQLALCHEMY_DATABASE_URI='postgresql://postgres:password@localhost/catalog_db',
+    SQLALCHEMY_TRACK_MODIFICATIONS=False
+)
+
+db = SQLAlchemy(app)
 
 @app.route('/index')
 @app.route('/')
@@ -91,5 +99,20 @@ def jinja_macros():
     return render_template('using_macro.html', movies=movies_dict)
 
 
+class Publisher(db.Model):
+    __tablename__ = 'Publisher'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
+
+    def __repr__(self):
+        return f'Publisher ID is {self.id}, publisher name is {self.name}'
+
+
 if __name__ == '__main__':
+    db.create_all()  # create tables if they don't exist
     app.run(debug=True)
